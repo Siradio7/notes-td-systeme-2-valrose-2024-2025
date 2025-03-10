@@ -6,7 +6,7 @@ def affiche():
     print(f"{mon_pid=}, {pid_de_mon_pere=}")
 
 affiche()
-if not os.fork() : # fils ## `not os.fork()` equivaut à `os.fork() == 0`
+if not os.fork() : # fils ## `not os.fork()` équivaut à `os.fork() == 0`
     affiche()
     pid = os.fork()
     if not os.fork(): # petit-fils 
