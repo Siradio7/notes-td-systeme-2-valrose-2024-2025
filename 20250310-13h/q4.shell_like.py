@@ -3,7 +3,7 @@ import os, sys, time, random
 try:
     n = int(sys.argv[1])
 except:
-    print("Usage: python3 q4.escalier.py <n>")
+    print("Usage: python3 q4.shell_like.py <n>")
     sys.exit(1)
 def affiche():
     mon_pid = os.getpid()
