@@ -5,6 +5,7 @@ try:
 except:
     print("Usage: python3 q4.shell_like.py <n>")
     sys.exit(1)
+
 def affiche():
     mon_pid = os.getpid()
     pid_de_mon_pere = os.getppid()
