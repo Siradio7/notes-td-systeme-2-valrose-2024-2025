@@ -6,12 +6,12 @@
 # 3. afficher le code de sortie avec `echo $?` (affiche 0, et non pas 11, qui est le code de sortie du fils...)
 import os, sys
 x = 1
-mon_pid = os.fork()
-if mon_pid == 0: # child
+pid_de_mon_fils = os.fork()
+if pid_de_mon_fils == 0: # je suis le fils
     x = x + 1
     print("child: x =", x)
     sys.exit(11)
-# parent
+# je suis le père
 x = x - 1
 print("parent: x =", x)
 sys.exit(0)
