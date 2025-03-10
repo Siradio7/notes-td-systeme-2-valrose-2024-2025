@@ -3,6 +3,7 @@
 # pour exécuter ce fichier depuis un terminal
 # 1. se placer dans le bon répertoire (commande `cd`)
 # 2. taper `python q1.py`
+# 3. afficher le code de sortie avec `echo $?` (affiche 0, et non pas 11, qui est le code de sortie du fils...)
 import os, sys
 x = 1
 mon_pid = os.fork()
@@ -14,3 +15,4 @@ if mon_pid == 0: # child
 x = x - 1
 print("parent: x =", x)
 sys.exit(0)
+
