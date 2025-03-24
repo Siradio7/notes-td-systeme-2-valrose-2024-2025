@@ -1,4 +1,10 @@
-import os, time, sys
+import os, time, sys, signal
+
+def handler(_signum, _frame):
+    print("bye")
+    sys.exit(0)
+
+signal.signal(signal.SIGINT, handler)
 while True:
     PID = os.getpid()
     print(f"PID: {PID}")
