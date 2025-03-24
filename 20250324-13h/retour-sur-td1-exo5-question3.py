@@ -1,10 +1,4 @@
 import os, time, sys, signal
-
-def handler(_signum, _frame):
-    print("bye")
-    sys.exit(0)
-
-signal.signal(signal.SIGINT, handler)
 while True:
     PID = os.getpid()
     print(f"PID: {PID}")
@@ -13,3 +7,10 @@ while True:
     if pid_of_my_son != 0:
         # le parent
         sys.exit(0)
+
+
+# pour tuer le processus depuis le terminal
+# kill -SIGINT <PID>
+# ou plus court
+# kill -9 <PID>
+# avec PID le dernier PID affiché
