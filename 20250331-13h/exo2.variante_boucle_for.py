@@ -27,8 +27,6 @@ def handler_du_pere_et_du_fils(signum, _frame):
         # je suis le fils
         if nb_signaux_recus < n:
             os.kill(os.getppid(), signal.SIGUSR1)
-        else:
-            sys.exit(0)
 
 signal.signal(signal.SIGUSR1, handler_du_pere_et_du_fils)
 signal.signal(signal.SIGUSR2, handler_du_pere_et_du_fils)
@@ -38,9 +36,9 @@ if pid_du_fils == 0:
     # fils
     pid_du_pere = os.getppid()
     os.kill(pid_du_pere, signal.SIGUSR1)
-    while True: # de manière répétée, à l'infini
-        signal.pause()  # Attendre le signal SIGUSR2 (1 fois) # 
-        # ^ ou pass, mais on fait alors de l'attente active qui fait chauffer le CPU...
+    for _ in range(n): # de manière répétée, à l'infini
+        signal.pause()  # Attendre le signal SIGUSR2 (1 fois) 
+    sys.exit(0)
 
 # père
 os.wait()
