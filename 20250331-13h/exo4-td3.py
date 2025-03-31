@@ -9,12 +9,23 @@ arguments_cmd1 = sys.argv[1:index_then]
 arguments_cmd2 = sys.argv[index_then + 1:index_else]
 arguments_cmd3 = sys.argv[index_else + 1:index_fin]
 
+def exec_cmd(argv):
+    # une surcouche à os.execvp qui 
+    # rattrape un recouvrement un cas d'échec
+    try:
+        os.execvp(argv[0], argv)
+    except:
+        print(f"Erreur: commande {argv[0]} introuvable")
+        sys.exit(1)  # <- pour indiquer qu'il y a eu une erreur
+
+
 pid_du_fils = os.fork()
 
 if pid_du_fils == 0:
     # fils
-    os.execvp(arguments_cmd1[0], arguments_cmd1)
-    assert(False) # <- on n'arrive jamais ici
+    exec_cmd(arguments_cmd1)
+    assert(False) # <- pédagogique, pour indiquer que cette ligne est inatteignable; inutile sinon
+    
 
 # père
 _pid, status = os.waitpid(pid_du_fils, 0)
@@ -22,7 +33,9 @@ if os.WIFEXITED(status):
     # le fils s'est terminé normalement
     if os.WEXITSTATUS(status) == 0:
         # le fils s'est terminé avec succès
-        os.execvp(arguments_cmd2[0], arguments_cmd2)
+        exec_cmd(arguments_cmd2)
+        assert(False) 
     else:
         # le fils s'est terminé avec une erreur
-        os.execvp(arguments_cmd3[0], arguments_cmd3)
+        exec_cmd(arguments_cmd3)
+        assert(False) 
