@@ -1,0 +1,6 @@
+blab lakahskjh
+ recent call last):
+  File "/Users/lozes/Documents/Enseignement/2024-2025/systeme-2/notes-seances/20250407-13h/exemple_dup.py", line 7, in <module>
+    print("jakdsljdlkjd", file=sys.stderr) # -> 2
+                               ^^^
+NameError: name 'sys' is not defined. Did you forget to import 'sys'?
